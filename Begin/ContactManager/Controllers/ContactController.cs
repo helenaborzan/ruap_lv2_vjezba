@@ -13,7 +13,8 @@ namespace ContactManager.Controllers
 
         public ContactController()
         {
-            this.contactRepository = new ContactRepository();  // Tightly coupled to the repository
+            var httpContextAccessor = new HttpContextAccessor();
+            this.contactRepository = new ContactRepository(httpContextAccessor);  
         }
 
         [HttpGet]
