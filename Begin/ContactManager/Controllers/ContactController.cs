@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ContactManager.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactManager.Controllers
@@ -8,9 +9,15 @@ namespace ContactManager.Controllers
     public class ContactController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<string[]> Get()
+        public ActionResult<IEnumerable<Contact>> Get()
         {
-            return new string[] { "Hello", "World" };
+            var contacts = new List<Contact>
+            {
+                new Contact { Id = 1, Name = "Glenn Block" },
+                new Contact { Id = 2, Name = "Dan Roth" }
+            };
+
+            return Ok(contacts);
         }
     }
 }
